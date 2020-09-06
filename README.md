@@ -1,4 +1,4 @@
-# amazon-react-clone
+# amazon-react-clone ![Hits](https://views.whatilearened.today/views/github/ahmadykhan555/amazon-react-clone.svg)
 Amazon Clone with React Redux and firebase
 
 ### Screenshots
