@@ -1,0 +1,19 @@
+.navbar-action-item {
+    color: white;
+    font-weight: normal;
+    text-transform: capitalize;
+    white-space: nowrap;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    .title {
+        font-size: 13px;
+    }
+
+    .cta {
+        font-size: 14px;
+        font-weight: 900;
+    }
+}

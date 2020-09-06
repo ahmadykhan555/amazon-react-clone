@@ -1,0 +1,60 @@
+.app__header__navbar {
+    $padding: 15px 25px;
+    color: white;
+
+    &__row {
+        display: flex;
+        padding: $padding;
+
+        .actions {
+            display: flex;
+        }
+
+        div.navbar-action-item {
+            margin: 0 15px;
+        }
+    }
+
+    &--row1 {
+        background: #131921;
+
+        .amazon-logo {
+            width: 150px;
+
+            img {
+                height: 100%;
+                width: 80%;
+                object-fit: contain;
+            }
+        }
+
+        .search-bar {
+            flex: 1;
+        }
+
+        .actions {
+            display: flex;
+            flex: 0;
+            align-items: center;
+
+
+
+            svg {
+                font-size: 40px;
+            }
+        }
+    }
+
+    &--row2 {
+        background: #242F3E;
+
+        .deliver-to {
+            width: 150px;
+        }
+
+        .actions {
+            flex: 1;
+        }
+    }
+
+}
