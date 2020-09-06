@@ -8,6 +8,9 @@ const Hero = () => {
       <div className="separator"></div>
       <div className="hero-cards-wrapper">
         <HeroCard></HeroCard>
+        <HeroCard></HeroCard>
+        <HeroCard></HeroCard>
+        <HeroCard></HeroCard>
       </div>
     </div>
   );

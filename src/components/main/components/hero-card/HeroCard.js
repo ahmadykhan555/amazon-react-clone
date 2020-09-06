@@ -5,23 +5,19 @@ const HeroCard = () => {
   const categories = [
     {
       title: "computers & accessories",
-      imgUrl:
-        "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/February/Dashboard/computer120x._SY85_CB468850970_.jpg"
+      imgUrl: "https://loremflickr.com/120/120"
     },
     {
       title: "computers & accessories",
-      imgUrl:
-        "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/February/Dashboard/computer120x._SY85_CB468850970_.jpg"
+      imgUrl: "https://loremflickr.com/120/120"
     },
     {
       title: "computers & accessories",
-      imgUrl:
-        "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/February/Dashboard/computer120x._SY85_CB468850970_.jpg"
+      imgUrl: "https://loremflickr.com/120/120"
     },
     {
       title: "computers & accessories",
-      imgUrl:
-        "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2019/February/Dashboard/computer120x._SY85_CB468850970_.jpg"
+      imgUrl: "https://loremflickr.com/120/120"
     }
   ];
   return (
@@ -30,7 +26,11 @@ const HeroCard = () => {
       <div className="hero-card__categories-wrapper">
         {categories.map((category, index) => (
           <div className="category" key={index}>
-            <img className="category__img" src={category.imgUrl} alt="" />
+            <img
+              className="category__img"
+              src={category.imgUrl + "?random=" + Math.random()}
+              alt=""
+            />
             <h3 className="category__text">{category.title}</h3>
             <a className="category__overlay"></a>
           </div>
