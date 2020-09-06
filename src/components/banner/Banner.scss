@@ -1,0 +1,30 @@
+.banner-component {
+    width: 100%;
+    background: #D8F7EB;
+    color: black;
+    box-sizing: border-box;
+    padding: 15px 25px;
+    font-size: 13px;
+    text-transform: capitalize;
+    display: flex;
+
+    transition: 2.5s linear ease-in-out;
+
+    &__text {
+        display: flex;
+        font-weight: bold;
+        align-items: center;
+
+        flex: 1;
+
+        .cta-link {
+            margin-left: 5px;
+        }
+    }
+
+    &__dismiss-banner {
+        font-weight: 900;
+        cursor: pointer;
+    }
+
+}
