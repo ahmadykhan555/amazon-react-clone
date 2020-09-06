@@ -1,0 +1,21 @@
+.app-amazon__hero {
+    background: url('https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Hero/Fuji_TallHero_45M_v2_1x._CB432458380_.jpg');
+    height: 75vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    .separator {
+        flex: 1;
+    }
+
+    .hero-cards-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+}

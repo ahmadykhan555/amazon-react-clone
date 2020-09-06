@@ -1,0 +1,55 @@
+.hero-card {
+    padding: 20px;
+    box-sizing: border-box;
+    background: #ffffff;
+    height: 420px;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-right: 20px;
+
+    &:last-child {
+        margin-right: 0px;
+    }
+
+    .hero-card__categories-wrapper {
+        margin: 15px 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        flex: 1;
+        grid-gap: 5px;
+
+        .category {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            max-height: 250px;
+
+            &__img {
+                object-fit: contain;
+                flex-basis: 80%;
+            }
+
+            &__text {
+                font-size: 11px;
+                font-weight: normal;
+            }
+
+            &__overlay {
+                background-color: rgba(0, 164, 180, .05);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    &__cta {
+        text-decoration: none;
+    }
+}
