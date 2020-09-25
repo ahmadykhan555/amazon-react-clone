@@ -2,6 +2,9 @@ import React from "react";
 import "./Main.scss";
 import Hero from "./components/hero/Hero";
 import CarouselComponent from "../carousel/Carousel";
+import { connect } from "react-redux";
+import { togglePlatform, incrementCounter } from "../../store/platform/actions";
+import ProductsListing from "../../sections/ProductsListing/ProductsListing";
 
 const itemStyles = index => {
   return {
@@ -22,33 +25,41 @@ const items = collection.map((item, index) => (
   </div>
 ));
 
-const Main = () => {
+const Main = ({
+  platform,
+  productCount,
+  togglePlatform,
+  incrementCounter,
+  products
+}) => {
+  const handleClick = () => {
+    togglePlatform();
+    incrementCounter();
+  };
+
   return (
     <div className="app-amazon__main" id="app-amazon__main">
+      <p className="action" onClick={handleClick}>
+        {platform} - {productCount}
+      </p>
       <Hero></Hero>
-      <CarouselComponent
-        size="regular"
-        collectionName="products"
-        items={items}
-        configuration={{ itemsInView: 2 }}
-      ></CarouselComponent>
-      <CarouselComponent
-        collectionName="electronics"
-        items={items.slice(0, 4)}
-        configuration={{ itemsInView: 3 }}
-      ></CarouselComponent>
-      <CarouselComponent
-        collectionName="kitchenware"
-        items={items}
-        configuration={{ itemsInView: 4 }}
-      ></CarouselComponent>
-      <CarouselComponent
-        collectionName="sports"
-        items={items}
-        configuration={{ itemsInView: 5 }}
-      ></CarouselComponent>
+      <ProductsListing></ProductsListing>
     </div>
   );
 };
 
-export default Main;
+const mapStateToProps = state => ({
+  platform: state.root.platform,
+  productCount: state.root.productCount,
+  products: state.root.products
+});
+
+const connector = connect(
+  mapStateToProps,
+  {
+    togglePlatform,
+    incrementCounter
+  }
+);
+
+export default connector(Main);

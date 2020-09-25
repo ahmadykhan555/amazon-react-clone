@@ -4,20 +4,16 @@ import "./HeroCard.scss";
 const HeroCard = () => {
   const categories = [
     {
-      title: "computers & accessories",
-      imgUrl: "https://loremflickr.com/120/120"
+      title: "macbook pro"
     },
     {
-      title: "computers & accessories",
-      imgUrl: "https://loremflickr.com/120/120"
+      title: "smart watches"
     },
     {
-      title: "computers & accessories",
-      imgUrl: "https://loremflickr.com/120/120"
+      title: "iPad pro"
     },
     {
-      title: "computers & accessories",
-      imgUrl: "https://loremflickr.com/120/120"
+      title: "android"
     }
   ];
   return (
@@ -37,7 +33,7 @@ const HeroCard = () => {
         ))}
       </div>
       <a href="#" className="hero-card__cta">
-        CTA
+        View Detail
       </a>
     </div>
   );

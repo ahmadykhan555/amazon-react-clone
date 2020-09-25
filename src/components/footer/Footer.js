@@ -31,11 +31,11 @@ const Footer = () => {
         Back to top
       </div>
       <div className="app-amazon__footer__links">
-        {footerLinks.map(item => (
-          <div className="links-section">
+        {footerLinks.map((item, index) => (
+          <div className="links-section" key={index}>
             <h3 className="section-title">{item.title}</h3>
-            {item.links.map(link => (
-              <a href={link.to} className="link" target="_blank">
+            {item.links.map((link, index) => (
+              <a href={link.to} className="link" target="_blank" key={index}>
                 {link.displayName}
               </a>
             ))}

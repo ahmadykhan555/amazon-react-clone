@@ -2,17 +2,30 @@ import React, { useState } from "react";
 import "./Carousel.scss";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
+
 const defaultConfiguration = {
-  itemsInView: 1
+  itemsInView: 5
 };
 
 const CarouselComponent = ({ items, collectionName, configuration, size }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [navDirection, setNavDirection] = useState("");
+  const [dots, setDots] = useState([]);
 
   useEffect(() => {
     setActiveIndex(0);
   }, []);
+
+  useEffect(() => {
+    if (items.length) {
+      const dotsArray = [
+        ...new Array(Math.floor(items.length / configuration.itemsInView)).map(
+          () => ""
+        )
+      ];
+      setDots(dotsArray);
+    }
+  }, [items]);
 
   const navigate = (direction, index = null) => {
     let newIndex;
@@ -51,8 +64,8 @@ const CarouselComponent = ({ items, collectionName, configuration, size }) => {
         const scrollWidth = slideWidth;
         ele.scrollLeft =
           navDirection === "forward"
-            ? ele.scrollLeft + scrollWidth
-            : ele.scrollLeft - scrollWidth;
+            ? ele.scrollLeft + configuration.itemsInView * scrollWidth
+            : ele.scrollLeft - configuration.itemsInView * scrollWidth;
       }
     }
   };
@@ -64,9 +77,36 @@ const CarouselComponent = ({ items, collectionName, configuration, size }) => {
       flexShrink: 0
     };
 
-    // add extra 0.25% to make the last slide in view slightly hidden
+    // add extra 0.25% to make the last slide slightly hidden
     styles.flexBasis = 100 / configuration.itemsInView + 0.25 + "%";
     return styles;
+  };
+
+  const slideComponent = params => {
+    const { index } = params;
+    return (
+      <div
+        className="slide"
+        id={`${collectionName}-slide-${index}`}
+        style={computeStyles(index)}
+        key={index}
+      >
+        <p className="collection-label">
+          {collectionName}-{index}
+        </p>
+      </div>
+    );
+  };
+
+  const renderDot = params => {
+    const { index } = params;
+    return (
+      <div
+        onClick={() => handlePagerClick(index)}
+        key={index}
+        className={`pager-dot ${index === activeIndex ? "active" : ""}`}
+      ></div>
+    );
   };
 
   return (
@@ -85,27 +125,11 @@ const CarouselComponent = ({ items, collectionName, configuration, size }) => {
         className="carousel-component__slides-wrapper"
         id={collectionName + "-carousel"}
       >
-        {items.map((item, index) => (
-          <div
-            className="slide"
-            id={`${collectionName}-slide-${index}`}
-            style={computeStyles(index)}
-            key={index}
-          >
-            {item}
-          </div>
-        ))}
+        {items.map((item, index) => slideComponent({ index }))}
       </div>
       <div className="carousel-component__slides-pager">
-        {items.map((item, index) => (
-          // eslint-disable-next-line jsx-a11y/anchor-has-content
-          // eslint-disable-next-line jsx-a11y/anchor-is-valid
-          <a
-            onClick={() => handlePagerClick(index)}
-            key={index}
-            className={`pager-dot ${index === activeIndex ? "active" : ""}`}
-          ></a>
-        ))}
+        {dots.map((item, index) => renderDot({ index }))}
+        {renderDot({ index: items.legth })}
       </div>
       <div
         className="carousel-component__navigation carousel-component__navigation--after"
