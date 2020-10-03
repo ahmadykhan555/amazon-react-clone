@@ -1,0 +1,11 @@
+.carousel-wrapper {
+    margin-bottom: 2rem;
+
+    &:first-child {
+        margin-top: 2rem;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

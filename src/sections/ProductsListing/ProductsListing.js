@@ -3,19 +3,22 @@ import { connect } from "react-redux";
 import "./ProductsListing.scss";
 import CarouselComponent from "../../components/carousel/Carousel";
 const ProductsListing = ({ products }) => {
-  // items, collectionName, configuration, size
   return (
     <div className="products-list-wrapper">
-      <CarouselComponent
-        collectionName={"Alpha"}
-        items={products.slice(0, 10)}
-        configuration={{ itemsInView: 3 }}
-      ></CarouselComponent>
+      {products.length && (
+        <div className="carousel-wrapper">
+          <CarouselComponent
+            products={products}
+            collectionName="Prod"
+            configuration={{ itemsInView: 3 }}
+          ></CarouselComponent>
+        </div>
+      )}
     </div>
   );
 };
-const mapStateToProps = state => ({
-  products: state.root.products
+const mapStateToProps = (state) => ({
+  products: state.root.products,
 });
 const connection = connect(mapStateToProps);
 export default connection(ProductsListing);
