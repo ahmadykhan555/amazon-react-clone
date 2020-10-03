@@ -7,12 +7,12 @@ const NavBar = () => {
   const row1Actions = [
     {
       title: "hello, Sign in",
-      cta: "accounts & lists"
+      cta: "accounts & lists",
     },
     {
       title: "returns",
-      cta: "& orders"
-    }
+      cta: "& orders",
+    },
   ];
 
   const row2Actions = [
@@ -20,7 +20,7 @@ const NavBar = () => {
     { title: "customer service" },
     { title: "gift card" },
     { title: "registry" },
-    { title: "sell" }
+    { title: "sell" },
   ];
   return (
     <div className="app__header__navbar">
@@ -37,7 +37,10 @@ const NavBar = () => {
               cta={action.cta}
             ></NavbarActionItem>
           ))}
-          <ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon>
+          <div className="shopping-cart-cta">
+            <p className="items-in-cart-label">10</p>
+            <ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon>
+          </div>
         </div>
       </div>
       <div className="app__header__navbar__row app__header__navbar--row2">

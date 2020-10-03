@@ -2,31 +2,40 @@ import React, { useState } from "react";
 import "./Carousel.scss";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
+import ProductSlide from "../product-slide/ProductSlide";
 
 const defaultConfiguration = {
-  itemsInView: 5
+  itemsInView: 5,
 };
 
-const CarouselComponent = ({ items, collectionName, configuration, size }) => {
+const CarouselComponent = ({
+  products,
+  configuration,
+  size,
+  collectionName = "",
+}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [navDirection, setNavDirection] = useState("");
   const [dots, setDots] = useState([]);
 
+  // active index
   useEffect(() => {
     setActiveIndex(0);
   }, []);
 
+  // dots
   useEffect(() => {
-    if (items.length) {
+    if (products.length) {
       const dotsArray = [
-        ...new Array(Math.floor(items.length / configuration.itemsInView)).map(
-          () => ""
-        )
+        ...new Array(
+          Math.floor(products.length / configuration.itemsInView)
+        ).map(() => ""),
       ];
       setDots(dotsArray);
     }
-  }, [items]);
+  }, [products]);
 
+  // navigation
   const navigate = (direction, index = null) => {
     let newIndex;
     if (index === null) {
@@ -34,7 +43,7 @@ const CarouselComponent = ({ items, collectionName, configuration, size }) => {
       if (direction === "back") {
         newIndex = activeIndex - 1 > -1 ? activeIndex - 1 : 0;
       } else if (direction === "forward") {
-        newIndex = activeIndex + 1 < items.length ? activeIndex + 1 : 0;
+        newIndex = activeIndex + 1 < products.length ? activeIndex + 1 : 0;
       }
     } else {
       newIndex = index;
@@ -42,7 +51,8 @@ const CarouselComponent = ({ items, collectionName, configuration, size }) => {
     setActiveIndex(newIndex);
   };
 
-  const handlePagerClick = index => {
+  // click handler
+  const handlePagerClick = (index) => {
     index < activeIndex ? navigate("back", index) : navigate("forward", index);
   };
 
@@ -70,35 +80,7 @@ const CarouselComponent = ({ items, collectionName, configuration, size }) => {
     }
   };
 
-  // slide styles
-  const computeStyles = () => {
-    const styles = {
-      flexBasis: "100%",
-      flexShrink: 0
-    };
-
-    // add extra 0.25% to make the last slide slightly hidden
-    styles.flexBasis = 100 / configuration.itemsInView + 0.25 + "%";
-    return styles;
-  };
-
-  const slideComponent = params => {
-    const { index } = params;
-    return (
-      <div
-        className="slide"
-        id={`${collectionName}-slide-${index}`}
-        style={computeStyles(index)}
-        key={index}
-      >
-        <p className="collection-label">
-          {collectionName}-{index}
-        </p>
-      </div>
-    );
-  };
-
-  const renderDot = params => {
+  const renderDot = (params) => {
     const { index } = params;
     return (
       <div
@@ -125,11 +107,13 @@ const CarouselComponent = ({ items, collectionName, configuration, size }) => {
         className="carousel-component__slides-wrapper"
         id={collectionName + "-carousel"}
       >
-        {items.map((item, index) => slideComponent({ index }))}
+        {products.map((product) =>
+          ProductSlide({ ...product, itemsInView: configuration.itemsInView })
+        )}
       </div>
       <div className="carousel-component__slides-pager">
         {dots.map((item, index) => renderDot({ index }))}
-        {renderDot({ index: items.legth })}
+        {renderDot({ index: products.legth })}
       </div>
       <div
         className="carousel-component__navigation carousel-component__navigation--after"
@@ -142,14 +126,15 @@ const CarouselComponent = ({ items, collectionName, configuration, size }) => {
 };
 
 CarouselComponent.propTypes = {
-  items: PropTypes.array.isRequired,
+  products: PropTypes.array.isRequired,
   collectionName: PropTypes.string.isRequired,
   configuration: PropTypes.shape({
-    itemsInView: PropTypes.number
-  })
+    itemsInView: PropTypes.number,
+  }),
 };
 
 CarouselComponent.defaultProps = {
-  configuration: defaultConfiguration
+  configuration: defaultConfiguration,
 };
+
 export default CarouselComponent;

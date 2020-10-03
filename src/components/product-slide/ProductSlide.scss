@@ -1,0 +1,42 @@
+.slide {
+    scroll-snap-align: start;
+    height: 100%;
+    margin-right: 10px;
+    transition: transform 0.5s;
+    position: relative;
+    display: flex;
+    background-color: rgb(250, 250, 248);
+    position: relative;
+
+    .product-img {
+        position: absolute;
+        height: 75%;
+        object-fit: contain;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    .collection-label {
+        padding: 10px;
+        color: black;
+        font-weight: bolder;
+        background: rgba(211, 211, 211, 0.75);
+        max-height: 30px;
+        box-sizing: border-box;
+        text-transform: capitalize;
+        font-size: 10px;
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
+    }
+
+    >div {
+        height: inherit;
+        width: inherit;
+        margin: auto;
+    }
+}

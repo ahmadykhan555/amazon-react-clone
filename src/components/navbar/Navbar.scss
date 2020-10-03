@@ -37,10 +37,21 @@
             flex: 0;
             align-items: center;
 
-
-
             svg {
                 font-size: 40px;
+            }
+        }
+
+        .shopping-cart-cta {
+            position: relative;
+
+            .items-in-cart-label {
+                position: absolute;
+                width: 100%;
+                top: -10px;
+                left: 38%;
+                font-size: 10px;
+                color: greenyellow;
             }
         }
     }
